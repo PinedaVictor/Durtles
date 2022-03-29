@@ -29,9 +29,15 @@ def reNameImages():
         # print(dist)
         os.rename(src, dist)
         
-            
 
-reNameImages()
+# reNameImages()
+
+
+def loopSubDirs():
+    print("In loopSubDirs")
+
+    for root, subDir, files in os.walk():
+        print()
 
 def countFiles():
     print(len(os.listdir(currentDir)))
