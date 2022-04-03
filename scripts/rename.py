@@ -1,6 +1,7 @@
 # 
 # 
 # Victor Pineda
+# 
 
 import re 
 import os
@@ -41,3 +42,6 @@ def loopSubDirs():
 
 def countFiles():
     print(len(os.listdir(currentDir)))
+
+
+countFiles()
