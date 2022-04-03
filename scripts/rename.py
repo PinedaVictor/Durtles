@@ -36,12 +36,23 @@ def reNameImages():
 
 def loopSubDirs():
     print("In loopSubDirs")
+    parentPath = os.path.dirname(currentDir)
+    print("Parent Dir: " + parentPath)
+    editingDir = "{}/TestingImages".format(parentPath)
+    print("loppSubDirs: " + editingDir)
 
-    for root, subDir, files in os.walk():
-        print()
+    for subDirs, subFolderName, files in os.walk(editingDir):
+        print("In my directory loop: " + str(len(subFolderName)) + "SubDirs: " + subDirs)
+        for a in subFolderName:
+            print("The a in whatIs: " +  a)
+        for file in files:
+            print("The file: " + file)
+        print("--")
+
+loopSubDirs()
 
 def countFiles():
     print(len(os.listdir(currentDir)))
 
 
-countFiles()
+# countFiles()
