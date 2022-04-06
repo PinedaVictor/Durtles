@@ -1,5 +1,4 @@
 # 
-# 
 # Victor Pineda
 # 
 
@@ -7,30 +6,27 @@ import re
 import os
 
 
-# print("Wassup")
-
 currentDir = os.getcwd()
 # print("Current Dirctory: " + currentDir)
-editDir = "{}/Background".format(currentDir)
+# editDir = "{}/Background".format(currentDir)
 # print("Edit Dir: " + editDir)
 
 pattern = re.compile("[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
 removeUndeDash = "_*-*"
 
-def reNameImages():
-    print("Hi from rename funciton")
+# def reNameImages():
+#     print("Hi from rename funciton")
 
-    for filename in os.listdir(editDir):
-        # print("File Name: " + filename)
-        src = "{0}/{1}".format(editDir, filename)
-        findPattern = pattern.findall(filename)
-        tempName = ''.join(findPattern)
-        newName = re.sub(removeUndeDash, '', tempName)
-        print("New name: " + newName)
-        dist = "{0}/{1}".format(editDir, newName)
-        # print(dist)
-        os.rename(src, dist)
-        
+#     for filename in os.listdir(editDir):
+#         # print("File Name: " + filename)
+#         src = "{0}/{1}".format(editDir, filename)
+#         findPattern = pattern.findall(filename)
+#         tempName = ''.join(findPattern)
+#         newName = re.sub(removeUndeDash, '', tempName)
+#         print("New name: " + newName)
+#         dist = "{0}/{1}".format(editDir, newName)
+#         # print(dist)
+#         os.rename(src, dist)
 
 # reNameImages()
 
@@ -54,6 +50,7 @@ def loopSubDirs():
             print("New name: " + newName)
             dist = "{0}/{1}".format(subDir, newName)
             print("New dist: " + dist)
+            os.rename(src, dist)
             print("      ")
 
         print("--")
