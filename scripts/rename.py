@@ -14,7 +14,7 @@ currentDir = os.getcwd()
 editDir = "{}/Background".format(currentDir)
 # print("Edit Dir: " + editDir)
 
-pattern = re.compile("[a-zA-Z]*-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
+pattern = re.compile("[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
 removeUndeDash = "_*-*"
 
 def reNameImages():
