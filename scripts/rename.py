@@ -1,12 +1,14 @@
 # 
 # Victor Pineda
 # Description: This will rename all files in the 
-# Layers directory with the following pattern.
+# layers directory with the following pattern.
+# Script parameters
+#   * Empty rename all files in the directory
+#   * -p list a preview of what the files will be renamed
 
 import re 
 import os
 import sys
-import getopt
 
 currentDir = os.getcwd()
 pattern = re.compile("[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
@@ -18,6 +20,7 @@ def rename():
     print("Parent directory: " + parentPath)
     editingDir = "{}/Layers".format(parentPath)
     print("Editing Directory: " + editingDir)
+    print(" ")
 
     for subDir, subFolderName, files in os.walk(editingDir):
         for file in files:
@@ -26,48 +29,45 @@ def rename():
             tempName = ''.join(findPattern)
             newName = re.sub(removeUndeDash, '', tempName)
             dist = "{0}/{1}".format(subDir, newName)
-            # TODO: Uncomment when ready
-            # os.rename(src, dist)
+            os.rename(src, dist)
 
 
-def previewRenameEdit():
-    print("In loopSubDirs")
+def previewRename():
     parentPath = os.path.dirname(currentDir)
     print("Parent Dir: " + parentPath)
     editingDir = "{}/Layers".format(parentPath)
-    print("loppSubDirs: " + editingDir)
+    print("Editing Dir: " + editingDir)
+    print(" ")
 
     for subDir, subFolderName, files in os.walk(editingDir):
-        print("In my directory loop: " + subDir)
+        print("In directory: " + subDir)
         for file in files:
-            print("The file: " + file)
+            print("File: " + file)
             src = "{0}/{1}".format(subDir, file)
-            print("The src var: " + src)
+            print("src: " + src)
             findPattern = pattern.findall(file)
             tempName = ''.join(findPattern)
             newName = re.sub(removeUndeDash, '', tempName)
-            print("New name: " + newName)
+            print("New Name: " + newName)
             dist = "{0}/{1}".format(subDir, newName)
-            print("New dist: " + dist)
-            print("      ")
-        print("--")
-
+            print("Dist: " + dist)
+            print(" ")
 
 def accepter():
 
     argLength = len(sys.argv)
 
     if(argLength == 1):
-        print("No args other than sript name")
         rename()
     else:
         try:
-            args = str(sys.argv)
-            print("Without str function: " +  sys.argv[1])
-            print("the args: " + args)
-            tie, idk = getopt.getopt(args, '-v -b')
-            print(tie)
-            print("idk "+ idk)
+            argument = str(sys.argv[1])
+            if(argument == "-p"):
+                print("args = -p")
+                previewRename()
+            else:
+                print("ERROR: Argument does not exist")
+                print("Either run defualt script or choose an acceptable argument")
         except:
             print("Error occured: Make sure your input is in the correct format ")
 

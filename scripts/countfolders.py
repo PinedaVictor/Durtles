@@ -1,6 +1,6 @@
 # 
 # Victor Pineda
-# Description: List all folders in the Layers directory
+# Description: List all folders in the Layers directory.
 
 
 import os
