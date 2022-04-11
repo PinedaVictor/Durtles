@@ -39,32 +39,22 @@ def runSpellChecker():
 # spellcheck()
 
 
-def testSpell():
-    print("Testing spell first")
-    word  = "lgith red"
-    blob = Word(word)
-    # print(blob)
-
-    words = word.split()
+def recommendSpelling(inputWord):
+    words = inputWord.split()
     for w in words:
         checkWord = Word(w)
         possibleCorrections = checkWord.spellcheck()
-        print("The length of correction: " + str(len(possibleCorrections)))
         if(len(possibleCorrections) > 1):
-            print(w + " 1. " + str(possibleCorrections[0][0]) + " 2. " + str(possibleCorrections[1][0]))
+            print(w + "    1. " + str(possibleCorrections[0][0]) + " 2. " + str(possibleCorrections[1][0]))
         elif(len(possibleCorrections) == 1 and possibleCorrections[0][0] == w):
-            print("spelling")
-
+            print(w + "     1. Seems good")
         else:
-            print(w + " >> " + str(possibleCorrections[0][0]))
-
-
-    
+            print(w + "   1. " + str(possibleCorrections[0][0]))
 
 
 def accepter():
     print("Running")
 
-    testSpell()
+    recommendSpelling("ligh red bluee")
 
 accepter()
