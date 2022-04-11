@@ -10,7 +10,7 @@ import re
 from textblob import TextBlob
 from textblob import Word
 
-pattern = re.compile("[a-zA-Z]* ?")
+pattern = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 currentDir = os.getcwd()
 
 
@@ -28,10 +28,10 @@ def runSpellChecker():
             print("File: " + file)
             # src = "{0}/{1}".format(subDir, file)
             # print("src: " + src)
-            # findPattern = pattern.findall(file)
-            # tempName = ''.join(findPattern)
+            findPattern = pattern.findall(file)
+            checkName = ''.join(findPattern)
             # newName = re.sub(removeUndeDash, '', tempName)
-            # print("New Name: " + newName)
+            print("Checking name: " + checkName)
             # dist = "{0}/{1}".format(subDir, newName)
             # print("Dist: " + dist)
         print(" ")
@@ -54,7 +54,6 @@ def recommendSpelling(inputWord):
 
 def accepter():
     print("Running")
-
-    recommendSpelling("ligh red bluee")
+    runSpellChecker()
 
 accepter()
