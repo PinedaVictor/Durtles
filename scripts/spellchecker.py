@@ -10,20 +10,24 @@ import re
 from textblob import TextBlob
 from textblob import Word
 
-pattern = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
+print("With dictionary")
 currentDir = os.getcwd()
+parentPath = os.path.dirname(currentDir)
+print("Parent Dir: " + parentPath)
+editingDir = "{}/Layers".format(parentPath)
+print("Editing Dir: " + editingDir)
+print(" ")
+pattern = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 
-f = set()
+all_files = {
+    "name": "",
+    "src": "",
+    "correct" : False
+}
 
+i = []
 
 def runSpellChecker():
-    print("Calling spellcheck")
-    parentPath = os.path.dirname(currentDir)
-    print("Parent Dir: " + parentPath)
-    editingDir = "{}/Layers".format(parentPath)
-    print("Editing Dir: " + editingDir)
-    print(" ")
-
     for subDir, subFolderName, files in os.walk(editingDir):
         print("In directory: " + subDir)
         for file in files:
@@ -49,55 +53,69 @@ def runSpellChecker():
 # 4. 
 
 def initFileSystem():
-    print("init file system")
-    parentPath = os.path.dirname(currentDir)
-    print("Parent Dir: " + parentPath)
-    editingDir = "{}/Layers".format(parentPath)
-    print("Editing Dir: " + editingDir)
-    print(" ")
-
     for subDir, subFolderName, files in os.walk(editingDir):
         for file in files:
-            # print("File: " + file)
             src = "{0}/{1}".format(subDir, file)
             filedata = (file, src)
-            f.add(filedata)
-    # print("files ")
-    # print(f)
+            all_files.add(filedata)
+# initFileSystem()
 
-initFileSystem()
+def wD():
+    for subDir, subFolderName, files in os.walk(editingDir):
+        for file in files:
+            src = "{0}/{1}".format(subDir, file)
+            file_data = {"name": file, "src": src, "correct": True}
+            i.append(file_data)
 
-def checkAllFilesNames():
+
+def checkAllFileNames():
     print("Chexcking all files name")
-    for fileData in f:
-        print(fileData)
+    for fileData in i:
+        find_file_name = pattern.findall(fileData["name"])
+        name = ''.join(find_file_name)
+        # checkFileName(name)
+        full_name = name.split()
+        print(full_name)
 
-checkAllFilesNames()
 
-
-
-
-def checkFileName(inputWord):
-    words = inputWord.split()
-    for w in words:
-        checkWord = Word(w)
-        possibleCorrections = checkWord.spellcheck()
-        if(len(possibleCorrections) > 1):
-            # print(w + "    1. " + str(possibleCorrections[0][0]) + " 2. " + str(possibleCorrections[1][0]))
-            # print(w + "    1. " + str(possibleCorrections))
-            for word in possibleCorrections:
-                if(word[0] == w):
-                   print("Looks good: ✅" +  w)
-                else:
-                    print(word[0])
-        elif(len(possibleCorrections) == 1 and possibleCorrections[0][0] == w):
-            print(w + "     1. Seems good")
+def checkFileName(file_name):
+    print(file_name)
+    n = ''.join(file_name)
+    fn = n.split()
+    print(fn)
+    for w in fn:
+        check_word = Word(w)
+        possible_corrections = check_word.spellcheck()
+        file_name_correct = True
+        # print(possible_corrections)
+        # print(str(len(possible_corrections)))
+        # print(possible_corrections[0][1] == 0.0)
+        if(len(possible_corrections) == 1 and possible_corrections[0][1] == 0.0):
+            print("Unkown Word 🧐")
+            file_name_correct = False
         else:
-            print(w + "   1. " + str(possibleCorrections[0][0]))
+            for word in possible_corrections:
+                print(possible_corrections)
+                if(word[0] == w):
+                    print("Looks good: ✅")
+                    print(w + " : " +  word[0])
+                    print(file_name_correct)
 
+
+        # return file_name_correct
+        print("END loop")
+    print("____")
+
+wD()
+# checkAllFileNames()
+
+l = ["Yellow Grzlcihaseen blue"]
+check = checkFileName(l)
+print(check)
 
 def accepter():
     print("Running")
     # runSpellChecker()
 
+# checkAllFileNames()
 # accepter()
