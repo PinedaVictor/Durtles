@@ -3,11 +3,8 @@
 # Description: Goes through files in the layers directory
 # and checks for spelling errors for file names.
 
-# import symspellpy as spellchecker
-
 import os
 import re
-from textblob import TextBlob
 from textblob import Word
 
 print("With dictionary")
@@ -100,7 +97,9 @@ def checkFileName(file_name):
                     print("Looks good: ✅")
                     print(w + " : " +  word[0])
                     print(file_name_correct)
-
+        # TODO: Going to need to add truth values to a set or list
+        #       and final loop to see if there are any False 
+        #       values. If there are False values, there is spelling errors
 
         # return file_name_correct
         print("END loop")
