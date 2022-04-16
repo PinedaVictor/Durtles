@@ -5,17 +5,18 @@
 
 import os
 import re
-from regex import F
+import shutil
 from textblob import Word
 
 print("With dictionary")
-currentDir = os.getcwd()
-parentPath = os.path.dirname(currentDir)
-print("Parent Dir: " + parentPath)
-editingDir = "{}/Layers".format(parentPath)
-print("Editing Dir: " + editingDir)
+CURRENT_DIR = os.getcwd()
+PARENT_PATH = os.path.dirname(CURRENT_DIR)
+print("Parent Dir: " + PARENT_PATH)
+EDITING_DIR = "{}/Layers".format(PARENT_PATH)
+print("Editing Dir: " + EDITING_DIR)
 print(" ")
-pattern = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
+
+PATTERN = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 
 all_files = {
     "name": "",
@@ -28,55 +29,41 @@ incorrect_file_name = {
     "suggestions": []
 }
 
-i = []
+file_system = []
 
 incorrect_files = []
 
-# ALG
-# 1. place all file names in a set
-# 2. Check spelling for each name
-# 3. place correct words in set A Let set B denote misspelled words
-# 4.
 
-
-def wD():
-    for subDir, subFolderName, files in os.walk(editingDir):
+def init_file_system():
+    for subDir, subFolderName, files in os.walk(EDITING_DIR):
         for file in files:
             src = "{0}/{1}".format(subDir, file)
             file_data = {"name": file, "src": src}
-            i.append(file_data)
+            file_system.append(file_data)
 
 
-def checkAllFileNames():
-    print("Checking all files name")
-
-    for fileData in i:
-        # print(fileData["src"])
-        find_file_name = pattern.findall(fileData["name"])
+def check_all_file_names():
+    for fileData in file_system:
+        find_file_name = PATTERN.findall(fileData["name"])
         name = ''.join(find_file_name)
         full_name = name.split()
 
         if(len(full_name) < 2):
-            word_suggestions = checkWord(full_name[0])
+            word_suggestions = check_word(full_name[0])
             incorrect = {
                 "name": full_name[0], "src": fileData["src"], "suggestions": word_suggestions}
             if(len(word_suggestions) != 0):
                 incorrect_files.append(incorrect)
         else:
-            # print("Name is longer than one word")
-            # print(full_name)
-            # print(fileData["src"])
             for word in full_name:
-                # print(word)
-                getting_word_suggest = checkWord(word)
-                # print(getting_word_suggest)
+                getting_word_suggest = check_word(word)
                 incorrect_word = {
                     "name": word, "src": fileData["src"], "suggestions": getting_word_suggest}
                 if(len(getting_word_suggest) != 0):
                     incorrect_files.append(incorrect_word)
 
 
-def checkWord(file_name):
+def check_word(file_name):
     check_spelling = Word(file_name)
     possible_words = check_spelling.spellcheck()
 
@@ -93,7 +80,6 @@ def checkWord(file_name):
 
 
 def print_incorrect():
-    print("Printing Data")
     for incorrect_data in incorrect_files:
         print("src: " + incorrect_data["src"])
         print("word: " + incorrect_data["name"])
@@ -106,9 +92,8 @@ def print_incorrect():
 
 
 def accepter():
-    print("Running")
-    wD()
-    checkAllFileNames()
+    init_file_system()
+    check_all_file_names()
     print_incorrect()
 
 
