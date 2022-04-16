@@ -51,18 +51,24 @@ def checkAllFileNames():
     print("Checking all files name")
 
     for fileData in i:
+        # print(fileData["src"])
         find_file_name = pattern.findall(fileData["name"])
         name = ''.join(find_file_name)
         full_name = name.split()
-        # is_name_correct = isFileNameCorrect(full_name)
-        # print(full_name)
 
-        # print(len(full_name))
-        # print(is_name_correct)
         if(len(full_name) < 2):
-            # print(full_name[0])
-            is_name_correct = checkWord(full_name[0])
-            print(is_name_correct)
+            word_suggestions = checkWord(full_name[0])
+            incorrect = {
+                "name": full_name[0], "src": fileData["src"], "suggestions": word_suggestions}
+            if(len(word_suggestions) != 0):
+                incorrect_files.append(incorrect)
+        else:
+            print("Name is longer than one word")
+            print(full_name)
+            print(fileData["src"])
+            for word in full_name:
+                print(word)
+            # incorrect_files.append(incorrect)
 
         # if(len(is_name_correct) > 0):
         #     print("We have suggestions")
@@ -70,12 +76,11 @@ def checkAllFileNames():
 
 
 def checkWord(file_name):
-    print(" ")
     check_spelling = Word(file_name)
     possible_words = check_spelling.spellcheck()
 
     if(len(possible_words) == 1 and possible_words[0][1] == 0.0):
-        word_suggestions = possible_words
+        word_suggestions = ["Unknown Word"]
         return word_suggestions
 
     for word in possible_words:
@@ -90,6 +95,7 @@ def accepter():
     print("Running")
     wD()
     checkAllFileNames()
+    print(incorrect_files)
     # l = ["Yellow Greafdsfen blue"]
     # check = checkFileName(l)
     # print(check)
