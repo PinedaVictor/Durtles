@@ -1,17 +1,18 @@
-# 
+#
 # Victor Pineda
-# Description: This will rename all files in the 
+# Description: This will rename all files in the
 # layers directory with the following pattern.
 # Script parameters
 #   * Empty rename all files in the directory
 #   * -p list a preview of what the files will be renamed
 
-import re 
+import re
 import os
 import sys
 
 currentDir = os.getcwd()
-pattern = re.compile("[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
+pattern = re.compile(
+    "[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
 removeUndeDash = "_*-*"
 
 
@@ -53,6 +54,7 @@ def previewRename():
             print("Dist: " + dist)
             print(" ")
 
+
 def accepter():
 
     argLength = len(sys.argv)
@@ -69,8 +71,7 @@ def accepter():
                 print("ERROR: Argument does not exist")
                 print("Either run defualt script or choose an acceptable argument")
         except:
-            print("Error occured: Make sure your input is in the correct format ")
+            print("Error: Make sure your input is in the correct format ")
 
-    
 
 accepter()

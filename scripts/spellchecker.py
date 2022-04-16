@@ -4,6 +4,7 @@
 # and checks for spelling errors for file names.
 
 import os
+import sys
 import re
 import shutil
 from textblob import Word
@@ -12,7 +13,7 @@ print("With dictionary")
 CURRENT_DIR = os.getcwd()
 PARENT_PATH = os.path.dirname(CURRENT_DIR)
 print("Parent Dir: " + PARENT_PATH)
-EDITING_DIR = "{}/Layers".format(PARENT_PATH)
+EDITING_DIR = "{0}/Layers".format(PARENT_PATH)
 print("Editing Dir: " + EDITING_DIR)
 print(" ")
 
@@ -63,6 +64,33 @@ def check_all_file_names():
                     incorrect_files.append(incorrect_word)
 
 
+def seperate_incorrect_directory():
+
+    incorrect_name_src = set()
+
+    for data in incorrect_files:
+        incorrect_name_src.add(data["src"])
+
+    MISSPELLED_DIR = "{0}/Misspelled".format(PARENT_PATH)
+    if not os.path.isdir(MISSPELLED_DIR):
+        os.mkdir(MISSPELLED_DIR)
+    PARENT_PATH_LAYER = "{0}/Layers".format(PARENT_PATH)
+    for path in incorrect_name_src:
+        folder = os.path.dirname(path)
+        file_name = os.path.basename(path)
+        folder_dir = folder.replace(PARENT_PATH_LAYER, '')
+        out_dir = "{0}{1}".format(MISSPELLED_DIR, folder_dir)
+        move_file = "{0}/{1}".format(out_dir, file_name)
+        print(move_file)
+        if not os.path.isdir(out_dir):
+            print("This is not a dir: mkdir")
+            os.mkdir(out_dir)
+            shutil.move(path, move_file)
+        else:
+            print("Moving")
+            shutil.move(path, move_file)
+
+
 def check_word(file_name):
     check_spelling = Word(file_name)
     possible_words = check_spelling.spellcheck()
@@ -91,10 +119,28 @@ def print_incorrect():
         print("")
 
 
+def check_errors():
+    if(len(incorrect_files) < 1):
+        return "No spelling erros found"
+
+
 def accepter():
+
     init_file_system()
     check_all_file_names()
-    print_incorrect()
+    print(check_errors())
+
+    arg_length = len(sys.argv)
+
+    if(arg_length == 1):
+        print_incorrect()
+    else:
+        try:
+            argument = str(sys.argv[1])
+            if(argument == "-ss"):
+                seperate_incorrect_directory()
+        except:
+            print("Error: Make sure your input is in the correct format ")
 
 
 accepter()
