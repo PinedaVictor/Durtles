@@ -63,16 +63,17 @@ def checkAllFileNames():
             if(len(word_suggestions) != 0):
                 incorrect_files.append(incorrect)
         else:
-            print("Name is longer than one word")
-            print(full_name)
-            print(fileData["src"])
+            # print("Name is longer than one word")
+            # print(full_name)
+            # print(fileData["src"])
             for word in full_name:
-                print(word)
-            # incorrect_files.append(incorrect)
-
-        # if(len(is_name_correct) > 0):
-        #     print("We have suggestions")
-        #     print(is_name_correct)
+                # print(word)
+                getting_word_suggest = checkWord(word)
+                # print(getting_word_suggest)
+                incorrect_word = {
+                    "name": word, "src": fileData["src"], "suggestions": getting_word_suggest}
+                if(len(getting_word_suggest) != 0):
+                    incorrect_files.append(incorrect_word)
 
 
 def checkWord(file_name):
@@ -91,14 +92,24 @@ def checkWord(file_name):
     return possible_words
 
 
+def print_incorrect():
+    print("Printing Data")
+    for incorrect_data in incorrect_files:
+        print("src: " + incorrect_data["src"])
+        print("word: " + incorrect_data["name"])
+        print("Did you mean: ")
+        for i in range(0, len(incorrect_data["suggestions"])):
+            print(str(i+1) + ": " +
+                  incorrect_data["suggestions"][i][0] + " ", end="")
+        print()
+        print("")
+
+
 def accepter():
     print("Running")
     wD()
     checkAllFileNames()
-    print(incorrect_files)
-    # l = ["Yellow Greafdsfen blue"]
-    # check = checkFileName(l)
-    # print(check)
+    print_incorrect()
 
 
 accepter()
