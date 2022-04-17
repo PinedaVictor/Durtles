@@ -8,14 +8,9 @@ import sys
 import re
 import shutil
 from textblob import Word
+from global_ import EDITING_DIR
+from global_ import PARENT_PATH
 
-print("With dictionary")
-CURRENT_DIR = os.getcwd()
-PARENT_PATH = os.path.dirname(CURRENT_DIR)
-print("Parent Dir: " + PARENT_PATH)
-EDITING_DIR = "{0}/Layers".format(PARENT_PATH)
-print("Editing Dir: " + EDITING_DIR)
-print(" ")
 
 PATTERN = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 
@@ -65,7 +60,6 @@ def check_all_file_names():
 
 
 def seperate_incorrect_directory():
-
     incorrect_name_src = set()
 
     for data in incorrect_files:
@@ -83,11 +77,9 @@ def seperate_incorrect_directory():
         move_file = "{0}/{1}".format(out_dir, file_name)
         print(move_file)
         if not os.path.isdir(out_dir):
-            print("This is not a dir: mkdir")
             os.mkdir(out_dir)
             shutil.move(path, move_file)
         else:
-            print("Moving")
             shutil.move(path, move_file)
 
 
@@ -122,6 +114,8 @@ def print_incorrect():
 def check_errors():
     if(len(incorrect_files) < 1):
         return "No spelling erros found"
+    else:
+        return "Errors Found"
 
 
 def accepter():

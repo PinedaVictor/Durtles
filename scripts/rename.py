@@ -3,70 +3,70 @@
 # Description: This will rename all files in the
 # layers directory with the following pattern.
 # Script parameters
-#   * Empty rename all files in the directory
-#   * -p list a preview of what the files will be renamed
+#   * Empty preview rename files
+#   * -r rename all files in Layers directory
 
 import re
 import os
 import sys
+from global_ import CURRENT_DIR
+from global_ import PARENT_PATH
+from global_ import EDITING_DIR
 
-currentDir = os.getcwd()
-pattern = re.compile(
+NAME_PATTERN = re.compile(
     "[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
-removeUndeDash = "_*-*"
+remove_underscore_dash = "_*-*"
 
 
 def rename():
-    parentPath = os.path.dirname(currentDir)
-    print("Parent directory: " + parentPath)
-    editingDir = "{}/Layers".format(parentPath)
-    print("Editing Directory: " + editingDir)
+    print("Parent directory: " + PARENT_PATH)
+    print("Editing Directory: " + EDITING_DIR)
     print(" ")
 
-    for subDir, subFolderName, files in os.walk(editingDir):
+    for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
         for file in files:
-            src = "{0}/{1}".format(subDir, file)
-            findPattern = pattern.findall(file)
-            tempName = ''.join(findPattern)
-            newName = re.sub(removeUndeDash, '', tempName)
-            dist = "{0}/{1}".format(subDir, newName)
+            src = "{0}/{1}".format(sub_dir, file)
+            find_pattern = NAME_PATTERN.findall(file)
+            temp_name = ''.join(find_pattern)
+            new_name = re.sub(remove_underscore_dash, '', temp_name)
+            dist = "{0}/{1}".format(sub_dir, new_name)
             os.rename(src, dist)
 
 
-def previewRename():
-    parentPath = os.path.dirname(currentDir)
-    print("Parent Dir: " + parentPath)
-    editingDir = "{}/Layers".format(parentPath)
-    print("Editing Dir: " + editingDir)
+def preview_rename():
+    print("Preview Rename")
+    parent_path = os.path.dirname((CURRENT_DIR))
+    print("Parent Dir: " + parent_path)
+    editing_dir = "{}/Layers".format(parent_path)
+    print("Editing Dir: " + editing_dir)
     print(" ")
 
-    for subDir, subFolderName, files in os.walk(editingDir):
-        print("In directory: " + subDir)
+    for sub_dir, sub_folder_name, files in os.walk(editing_dir):
+        print("In directory: " + sub_dir)
         for file in files:
             print("File: " + file)
-            src = "{0}/{1}".format(subDir, file)
+            src = "{0}/{1}".format(sub_dir, file)
             print("src: " + src)
-            findPattern = pattern.findall(file)
-            tempName = ''.join(findPattern)
-            newName = re.sub(removeUndeDash, '', tempName)
-            print("New Name: " + newName)
-            dist = "{0}/{1}".format(subDir, newName)
+            find_pattern = NAME_PATTERN.findall(file)
+            temp_name = ''.join(find_pattern)
+            new_name = re.sub(remove_underscore_dash, '', temp_name)
+            print("New Name: " + new_name)
+            dist = "{0}/{1}".format(sub_dir, new_name)
             print("Dist: " + dist)
             print(" ")
 
 
 def accepter():
 
-    argLength = len(sys.argv)
+    arg_length = len(sys.argv)
 
-    if(argLength == 1):
-        rename()
+    if(arg_length == 1):
+        preview_rename()
     else:
         try:
             argument = str(sys.argv[1])
-            if(argument == "-p"):
-                print("args = -p")
-                previewRename()
+            if(argument == "-r"):
+                rename()
             else:
                 print("ERROR: Argument does not exist")
                 print("Either run defualt script or choose an acceptable argument")
