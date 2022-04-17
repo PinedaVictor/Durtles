@@ -2,6 +2,8 @@
 # Victor Pineda
 # Description: Goes through files in the layers directory
 # and checks for spelling errors for file names.
+# Arguments:
+# -s Seperate misspelled words in a directory called Misspelled
 
 import os
 import sys
@@ -83,6 +85,17 @@ def seperate_incorrect_directory():
             shutil.move(path, move_file)
 
 
+# ALG
+# 1. Get all files in Misspelled dir
+# 2. Migrate them back to Layers
+def migrate_corrected():
+    print("Migrating")
+    MISSPELLED_DIR = "{0}/Misspelled".format(PARENT_PATH)
+    if not os.path.isdir(MISSPELLED_DIR):
+        print("You either have no spelling errors or you have not ran python3 spellchecker.py -ss")
+        print("python3 spellchecker.py -ss will move misspelled file names to directory Misspelled")
+
+
 def check_word(file_name):
     check_spelling = Word(file_name)
     possible_words = check_spelling.spellcheck()
@@ -119,7 +132,6 @@ def check_errors():
 
 
 def accepter():
-
     init_file_system()
     check_all_file_names()
     print(check_errors())
@@ -133,6 +145,8 @@ def accepter():
             argument = str(sys.argv[1])
             if(argument == "-ss"):
                 seperate_incorrect_directory()
+            elif(argument == "-m"):
+                migrate_corrected()
         except:
             print("Error: Make sure your input is in the correct format ")
 
