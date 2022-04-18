@@ -14,6 +14,9 @@ from global_ import EDITING_DIR
 from global_ import PARENT_PATH
 from global_ import MISSPELLED_DIR
 
+# TODO: You may not need re for this - look into the os lib
+#       their is a function call that returns only the name
+
 PATTERN = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 
 all_files = {

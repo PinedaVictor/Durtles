@@ -6,6 +6,8 @@
 #   * Empty preview rename files
 #   * -r rename all files in Layers directory
 
+# TODO: implement -help argument option that prints CMD options for scripts
+
 import re
 import os
 import sys
