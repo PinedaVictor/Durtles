@@ -41,6 +41,6 @@ Ensure you have properly installed Python 3 on your system
 
 ## License
 
-MIT
+[BSD 3](https://github.com/PinedaVictor/Durtles/blob/main/LICENSE)
 
 **Free Software, Hell Yeah!**
