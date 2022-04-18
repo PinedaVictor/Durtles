@@ -11,7 +11,6 @@ import re
 import shutil
 from textblob import Word
 from global_ import EDITING_DIR
-from global_ import PARENT_PATH
 from global_ import MISSPELLED_DIR
 
 # TODO: You may not need re for this - look into the os lib
@@ -72,11 +71,11 @@ def seperate_incorrect_directory():
 
     if not os.path.isdir(MISSPELLED_DIR):
         os.mkdir(MISSPELLED_DIR)
-    PARENT_PATH_LAYER = "{0}/Layers".format(PARENT_PATH)
+
     for path in incorrect_name_src:
         folder = os.path.dirname(path)
         file_name = os.path.basename(path)
-        folder_dir = folder.replace(PARENT_PATH_LAYER, '')
+        folder_dir = folder.replace(EDITING_DIR, '')
         out_dir = "{0}{1}".format(MISSPELLED_DIR, folder_dir)
         move_file = "{0}/{1}".format(out_dir, file_name)
         print(move_file)
@@ -87,9 +86,6 @@ def seperate_incorrect_directory():
             shutil.move(path, move_file)
 
 
-# ALG
-# 1. Get all files in Misspelled dir
-# 2. Migrate them back to Layers
 def migrate_misspelled_dir():
 
     if not os.path.isdir(MISSPELLED_DIR):
@@ -97,19 +93,17 @@ def migrate_misspelled_dir():
         print("python3 spellchecker.py -ss will move misspelled file names to directory Misspelled")
     else:
         print("Migrating")
-        print(PARENT_PATH)
-        print(EDITING_DIR)
         print("")
 
         for sub_dir, sub_folder_name, files in os.walk(MISSPELLED_DIR):
             for file in files:
                 src = "{0}/{1}".format(sub_dir, file)
-                print(src)
-                # find_pattern = NAME_PATTERN.findall(file)
-                # temp_name = ''.join(find_pattern)
-                # new_name = re.sub(remove_underscore_dash, '', temp_name)
-                # dist = "{0}/{1}".format(sub_dir, new_name)
-                # os.rename(src, dist)
+                folder_of_file = sub_dir.replace(MISSPELLED_DIR, '')
+                og_dir = "{0}{1}/{2}".format(EDITING_DIR, folder_of_file, file)
+
+                shutil.move(src, og_dir)
+
+    shutil.rmtree(MISSPELLED_DIR)
 
 
 def check_word(file_name):

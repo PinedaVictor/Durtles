@@ -11,7 +11,6 @@
 import re
 import os
 import sys
-from global_ import CURRENT_DIR
 from global_ import PARENT_PATH
 from global_ import EDITING_DIR
 
@@ -37,13 +36,9 @@ def rename():
 
 def preview_rename():
     print("Preview Rename")
-    parent_path = os.path.dirname((CURRENT_DIR))
-    print("Parent Dir: " + parent_path)
-    editing_dir = "{}/Layers".format(parent_path)
-    print("Editing Dir: " + editing_dir)
     print(" ")
 
-    for sub_dir, sub_folder_name, files in os.walk(editing_dir):
+    for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
         print("In directory: " + sub_dir)
         for file in files:
             print("File: " + file)
