@@ -1,7 +1,5 @@
 # Durtles
 
-![alt text](https://github.com/PinedaVictor/Durtles/banner-01.jpg)
-
 Directory Utilites buit for.... add a catchy desciption
 
 ## Features
