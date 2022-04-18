@@ -12,7 +12,7 @@ import shutil
 from textblob import Word
 from global_ import EDITING_DIR
 from global_ import PARENT_PATH
-
+from global_ import MISSPELLED_DIR
 
 PATTERN = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
 
@@ -67,7 +67,6 @@ def seperate_incorrect_directory():
     for data in incorrect_files:
         incorrect_name_src.add(data["src"])
 
-    MISSPELLED_DIR = "{0}/Misspelled".format(PARENT_PATH)
     if not os.path.isdir(MISSPELLED_DIR):
         os.mkdir(MISSPELLED_DIR)
     PARENT_PATH_LAYER = "{0}/Layers".format(PARENT_PATH)
@@ -88,12 +87,26 @@ def seperate_incorrect_directory():
 # ALG
 # 1. Get all files in Misspelled dir
 # 2. Migrate them back to Layers
-def migrate_corrected():
-    print("Migrating")
-    MISSPELLED_DIR = "{0}/Misspelled".format(PARENT_PATH)
+def migrate_misspelled_dir():
+
     if not os.path.isdir(MISSPELLED_DIR):
         print("You either have no spelling errors or you have not ran python3 spellchecker.py -ss")
         print("python3 spellchecker.py -ss will move misspelled file names to directory Misspelled")
+    else:
+        print("Migrating")
+        print(PARENT_PATH)
+        print(EDITING_DIR)
+        print("")
+
+        for sub_dir, sub_folder_name, files in os.walk(MISSPELLED_DIR):
+            for file in files:
+                src = "{0}/{1}".format(sub_dir, file)
+                print(src)
+                # find_pattern = NAME_PATTERN.findall(file)
+                # temp_name = ''.join(find_pattern)
+                # new_name = re.sub(remove_underscore_dash, '', temp_name)
+                # dist = "{0}/{1}".format(sub_dir, new_name)
+                # os.rename(src, dist)
 
 
 def check_word(file_name):
@@ -146,7 +159,7 @@ def accepter():
             if(argument == "-ss"):
                 seperate_incorrect_directory()
             elif(argument == "-m"):
-                migrate_corrected()
+                migrate_misspelled_dir()
         except:
             print("Error: Make sure your input is in the correct format ")
 
