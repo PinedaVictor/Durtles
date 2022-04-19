@@ -30,14 +30,14 @@ Ensure you have properly installed Python 3 on your system
 4. Run script of choice in the following format:
    - python3 script.py [Optional CMD Argument]
 
-| Script        | CMD Argument | Description                                                                                                   |
-| ------------- | :----------: | ------------------------------------------------------------------------------------------------------------- |
-| count_folders |     none     | Counts folders in Edit directory                                                                              |
-| rename        |     none     | Prints preview of files that will be renamed                                                                  |
-| rename        |      -r      | Renames files                                                                                                 |
-| spell_checker |     none     | Scans Edit directory and prints misspelled files to the console                                               |
-| spell_checker |     -ss      | Places all misspelled files in a directory called Misspelled (removes them from Edit dirctory )               |
-| spell_checker |      -m      | Migrates all files in Misspelled directory back to Edit directory in it's correct sub folder (if any).;[p'.;- |
+| Script        | CMD Argument | Description                                                                                            |
+| ------------- | :----------: | ------------------------------------------------------------------------------------------------------ |
+| count_folders |     none     | Counts folders in Edit directory                                                                       |
+| rename        |     none     | Prints preview of files that will be renamed                                                           |
+| rename        |      -r      | Renames files                                                                                          |
+| spell_checker |     none     | Scans Edit directory and prints misspelled files to the console                                        |
+| spell_checker |     -ss      | Places all misspelled files in a directory called Misspelled (removes them from Edit dirctory )        |
+| spell_checker |      -m      | Migrates all files in Misspelled directory back to Edit directory in it's correct sub folder (if any). |
 
 ## License
 
