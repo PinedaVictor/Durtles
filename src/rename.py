@@ -11,7 +11,7 @@
 import re
 import os
 import sys
-from global_ import PARENT_PATH
+import typer
 from global_ import EDITING_DIR
 
 NAME_PATTERN = re.compile(
@@ -20,10 +20,6 @@ remove_underscore_dash = "_*-*"
 
 
 def rename():
-    print("Parent directory: " + PARENT_PATH)
-    print("Editing Directory: " + EDITING_DIR)
-    print(" ")
-
     for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
         for file in files:
             src = "{0}/{1}".format(sub_dir, file)
@@ -35,21 +31,18 @@ def rename():
 
 
 def preview_rename():
-    print("Preview Rename")
-    print(" ")
-
     for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
         print("In directory: " + sub_dir)
         for file in files:
-            print("File: " + file)
-            src = "{0}/{1}".format(sub_dir, file)
-            print("src: " + src)
+            file_st = typer.style("File:", fg=typer.colors.BLUE)
+            file_name = typer.style(file, typer.colors.YELLOW)
             find_pattern = NAME_PATTERN.findall(file)
             temp_name = ''.join(find_pattern)
             new_name = re.sub(remove_underscore_dash, '', temp_name)
-            print("New Name: " + new_name)
-            dist = "{0}/{1}".format(sub_dir, new_name)
-            print("Dist: " + dist)
+            name_st = typer.style("New Name:", fg=typer.colors.BLUE)
+            new_name_st = typer.style(new_name, fg=typer.colors.GREEN)
+            print(file_st + " " + file_name)
+            print(name_st + " " + new_name_st)
             print(" ")
 
 
