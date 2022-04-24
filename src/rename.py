@@ -46,6 +46,8 @@ def preview_rename():
             print(" ")
 
 
+# TODO: Verify this accepter funciton is no longer needed
+#       might be wise to keep for local testing
 def accepter():
 
     arg_length = len(sys.argv)
@@ -64,4 +66,4 @@ def accepter():
             print("Error: Make sure your input is in the correct format ")
 
 
-accepter()
+# accepter()

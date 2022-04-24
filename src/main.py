@@ -15,8 +15,19 @@ def handle_cp():
 
 
 @app.command("prename")
-def handle_prename():
+def handle_prename(ss: str = typer.Option("ss", help="THis is help")):
+    """
+    Small description of what command does
+    """
+    print()
     preview_rename()
+
+
+@app.command()
+def main():
+    """
+    Testing the main function
+    """
 
 
 if __name__ == '__main__':
