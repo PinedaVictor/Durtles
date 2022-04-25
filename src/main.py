@@ -1,32 +1,25 @@
 # Main function
-
 import typer
-from count_folders import count_folders_dir
+import count
 from rename import preview_rename
+
 app = typer.Typer()
+app.add_typer(count.app, name="count")
 
 
-@app.command("count")
-def handle_cp():
+@app.command("rename")
+def handle_rename(op: str = typer.Option("su")):
+    # TODO: Define whether directory will be user input or defined globally
     """
-     Count number of folders in a directory.
+    Renaming files within in a directory.
     """
-    count_folders_dir()
+    if(op == "p"):
+        preview_rename()
 
 
-@app.command("prename")
-def handle_prename(ss: str = typer.Option("ss", help="THis is help")):
-    """
-    Small description of what command does
-    """
-    print()
-    preview_rename()
-
-
-@app.command()
 def main():
     """
-    Testing the main function
+    Directory utilities that automate time-consuming tasks.
     """
 
 

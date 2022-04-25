@@ -1,8 +1,8 @@
 #
 # Victor Pineda
 # Description: This will rename all files in the
-# layers directory with the following pattern.
-# Script parameters
+# directory with the following pattern.
+# Script parameters:
 #   * Empty preview rename files
 #   * -r rename all files in Layers directory
 
