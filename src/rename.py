@@ -11,7 +11,7 @@
 import re
 import os
 import sys
-import typer
+from colors import Colors
 from global_ import EDITING_DIR
 
 NAME_PATTERN = re.compile(
@@ -34,20 +34,24 @@ def preview_rename():
     for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
         print("In directory: " + sub_dir)
         for file in files:
-            file_st = typer.style("File:", fg=typer.colors.BLUE)
-            file_name = typer.style(file, typer.colors.YELLOW)
+            file_st = Colors.style(Colors.BLUE, "File:")
+            file_name = Colors.style(Colors.YELLOW, file)
             find_pattern = NAME_PATTERN.findall(file)
             temp_name = ''.join(find_pattern)
             new_name = re.sub(remove_underscore_dash, '', temp_name)
-            name_st = typer.style("New Name:", fg=typer.colors.BLUE)
-            new_name_st = typer.style(new_name, fg=typer.colors.GREEN)
+            name_st = Colors.style(Colors.BLUE, "New Name: ")
+            new_name_st = Colors.style(Colors.GREEN, new_name)
             print(file_st + " " + file_name)
             print(name_st + " " + new_name_st)
             print(" ")
 
 
+preview_rename()
+
 # TODO: Verify this accepter funciton is no longer needed
 #       might be wise to keep for local testing
+
+
 def accepter():
 
     arg_length = len(sys.argv)

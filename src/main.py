@@ -6,7 +6,7 @@ from count import count_folders_dir
 # from rename import preview_rename
 
 
-OPTIONS = {"-help", "-h", "-V", "-c"}
+OPTIONS = {"-help", "-h", "-V", "-c", "-version", }
 COMMANDS = {"config"}
 
 
@@ -15,7 +15,7 @@ def main():
 
     # Check if their ar no args
     if(arg_length == 1):
-        print("drt: try drt --help")
+        print("drt: try drt -help")
     else:
         input_option = sys.argv[1]
 
@@ -26,9 +26,8 @@ def main():
             # Run function based on option input
             if(input_option == "-help" or input_option == "-h"):
                 print("Usage: drt [OPTIONS...]")
-                # print(Colors.RED + "Letas")
-                s = Colors.color_text(Colors.RED, "S")
-                sr = Colors.color_text(Colors.FORERED, "r")
+                s = Colors.style(Colors.RED, "S")
+                sr = Colors.style(Colors.RED_BACKGROUND, "r")
                 print(sr)
                 print("Options:")
                 print(s + "wassip")
