@@ -1,11 +1,13 @@
 # Main function
 import sys
+from colors import Colors
 from count import count_folders_dir
 # import count
 # from rename import preview_rename
 
 
-OPTIONS = {"-help", "-V", "-c"}
+OPTIONS = {"-help", "-h", "-V", "-c"}
+COMMANDS = {"config"}
 
 
 def main():
@@ -22,8 +24,17 @@ def main():
             print(input_option)
             print("Option exists")
             # Run function based on option input
-            if(input_option == "-help"):
-                print("the help")
+            if(input_option == "-help" or input_option == "-h"):
+                print("Usage: drt [OPTIONS...]")
+                # print(Colors.RED + "Letas")
+                s = Colors.color_text(Colors.RED, "S")
+                sr = Colors.color_text(Colors.FORERED, "r")
+                print(sr)
+                print("Options:")
+                print(s + "wassip")
+                print("     -h      Display help menu")
+                print("     -pr     Preview files that will be renamed")
+                print("     -r      Rename files")
             elif(input_option == "-c"):
                 print("calling count")
                 count_folders_dir()
