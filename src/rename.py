@@ -14,6 +14,8 @@ import sys
 import typer
 from global_ import EDITING_DIR
 
+app = typer.Typer()
+
 NAME_PATTERN = re.compile(
     "[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
 remove_underscore_dash = "_*-*"
@@ -65,5 +67,22 @@ def accepter():
         except:
             print("Error: Make sure your input is in the correct format ")
 
-
 # accepter()
+
+
+# @app.command("dir")
+# def main(r: str = typer.Option(None, help="Preview files that will be renamed")):
+#     print("All the way ")
+#     if(r):
+#         preview_rename()
+
+@app.command("dir")
+def main(pr: str = typer.Option(None, help="Preview files that will be renamed"), arg: str = typer.Argument(None, help="the")):
+    print("All the way ")
+    if(pr):
+        print(pr)
+        # preview_rename()
+
+
+if __name__ == "__main__":
+    app()

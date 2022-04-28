@@ -1,19 +1,10 @@
 # Main function
 import typer
 from count import count_folders_dir
-from rename import preview_rename
+import rename
 
 app = typer.Typer()
-
-
-@app.command("rename")
-def handle_rename(op: str = typer.Option("su")):
-    # TODO: Define whether directory will be user input or defined globally
-    """
-    Renaming files within in a directory.
-    """
-    if(op == "p"):
-        preview_rename()
+app.add_typer(rename.app, name="rename")
 
 
 @app.command("count")
