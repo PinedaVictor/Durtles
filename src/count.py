@@ -4,16 +4,14 @@
 
 import os
 from global_ import EDITING_DIR
+from colors import Colors
 
 
 def count_folders_dir():
-    """
-     Count number of folders in a directory.
-    """
     try:
-        num_of_folders = len(os.listdir(EDITING_DIR))
+        num_of_folders = Colors.style(
+            Colors.GREEN, str(len(os.listdir(EDITING_DIR))))
         print(num_of_folders)
-        # typer.secho(num_of_folders, fg=typer.colors.GREEN)
     except:
         if not os.path.isdir(EDITING_DIR):
             print("Directory does not exist")

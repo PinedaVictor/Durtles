@@ -19,55 +19,54 @@ NAME_PATTERN = re.compile(
 remove_underscore_dash = "_*-*"
 
 
-def rename():
-    for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
-        for file in files:
-            src = "{0}/{1}".format(sub_dir, file)
-            find_pattern = NAME_PATTERN.findall(file)
-            temp_name = ''.join(find_pattern)
-            new_name = re.sub(remove_underscore_dash, '', temp_name)
-            dist = "{0}/{1}".format(sub_dir, new_name)
-            os.rename(src, dist)
+class Rename:
 
+    def rename():
+        for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
+            for file in files:
+                src = "{0}/{1}".format(sub_dir, file)
+                find_pattern = NAME_PATTERN.findall(file)
+                temp_name = ''.join(find_pattern)
+                new_name = re.sub(remove_underscore_dash, '', temp_name)
+                dist = "{0}/{1}".format(sub_dir, new_name)
+                os.rename(src, dist)
 
-def preview_rename():
-    for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
-        print("In directory: " + sub_dir)
-        for file in files:
-            file_st = Colors.style(Colors.BLUE, "File:")
-            file_name = Colors.style(Colors.YELLOW, file)
-            find_pattern = NAME_PATTERN.findall(file)
-            temp_name = ''.join(find_pattern)
-            new_name = re.sub(remove_underscore_dash, '', temp_name)
-            name_st = Colors.style(Colors.BLUE, "New Name: ")
-            new_name_st = Colors.style(Colors.GREEN, new_name)
-            print(file_st + " " + file_name)
-            print(name_st + " " + new_name_st)
-            print(" ")
+    def preview_rename():
+        for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
+            print("In directory: " + sub_dir)
+            for file in files:
+                file_st = Colors.style(Colors.BLUE, "File:")
+                file_name = Colors.style(Colors.YELLOW, file)
+                find_pattern = NAME_PATTERN.findall(file)
+                temp_name = ''.join(find_pattern)
+                new_name = re.sub(remove_underscore_dash, '', temp_name)
+                name_st = Colors.style(Colors.BLUE, "New Name: ")
+                new_name_st = Colors.style(Colors.GREEN, new_name)
+                print(file_st + " " + file_name)
+                print(name_st + " " + new_name_st)
+                print(" ")
 
-
-preview_rename()
 
 # TODO: Verify this accepter funciton is no longer needed
 #       might be wise to keep for local testing
 
 
-def accepter():
+    def accepter():
 
-    arg_length = len(sys.argv)
+        arg_length = len(sys.argv)
 
-    if(arg_length == 1):
-        preview_rename()
-    else:
-        try:
-            argument = str(sys.argv[1])
-            if(argument == "-r"):
-                rename()
-            else:
-                print("ERROR: Argument does not exist")
-                print("Either run defualt script or choose an acceptable argument")
-        except:
-            print("Error: Make sure your input is in the correct format ")
+        if(arg_length == 1):
+            Rename.preview_rename()
+        else:
+            try:
+                argument = str(sys.argv[1])
+                if(argument == "-r"):
+                    Rename.rename()
+                else:
+                    print("ERROR: Argument does not exist")
+                    print("Either run defualt script or choose an acceptable argument")
+            except:
+                print("Error: Make sure your input is in the correct format ")
 
 
 # accepter()
