@@ -25,19 +25,17 @@ Directory utilities are built for common and specific use cases. Professionals, 
 Ensure you have properly installed Python 3 on your system
 
 1. Clone repository
-2. Within [VSCODE](https://code.visualstudio.com/) mkdir called Edit
-3. cd into scripts folder
-4. Run script of choice in the following format:
-   - python3 script.py [Optional CMD Argument]
+2. mkdir called Edit
+3. cd into src folder
+4. Run in the following format:
+   - python3 main.py [Option...]
 
-| Script        | CMD Argument | Description                                                                                            |
-| ------------- | :----------: | ------------------------------------------------------------------------------------------------------ |
-| count_folders |     none     | Counts folders in Edit directory                                                                       |
-| rename        |     none     | Prints preview of files that will be renamed                                                           |
-| rename        |      -r      | Renames files                                                                                          |
-| spell_checker |     none     | Scans Edit directory and prints misspelled files to the console                                        |
-| spell_checker |     -ss      | Places all misspelled files in a directory called Misspelled (removes them from Edit dirctory )        |
-| spell_checker |      -m      | Migrates all files in Misspelled directory back to Edit directory in it's correct sub folder (if any). |
+| CMD Option | Description                                                                                            |
+|:----------: | ------------------------------------------------------------------------------------------------------  |
+|      -h, -help      | Display help menu                                                                               |                                   
+|      -r      | Renames files                                                                                          |
+|      -pr     | Preview files that will be renamed                                                                     |
+|      -c      | Count sub directories                                                                                  |                                                         
 
 ## License
 

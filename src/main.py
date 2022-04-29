@@ -1,25 +1,17 @@
 # Main function
-import typer
-from count import count_folders_dir
-import rename
-
-app = typer.Typer()
-app.add_typer(rename.app, name="rename")
-
-
-@app.command("count")
-def handle_count():
-    """
-     Count number of folders in a directory.
-    """
-    count_folders_dir()
+import sys
+from arg_parser import ArgParser
 
 
 def main():
-    """
-    Directory utilities that automate time-consuming tasks.
-    """
+    arg_length = len(sys.argv)
+    # Check if their ar no args
+    if(arg_length == 1):
+        print("drt: try python3 main.py -help")
+    else:
+        input_option = sys.argv[1]
+        ArgParser.parse(input_option)
 
 
 if __name__ == '__main__':
-    app()
+    main()
