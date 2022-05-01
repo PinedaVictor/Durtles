@@ -3,6 +3,9 @@
 
 import os
 
+# TODO: Imlement drt config class.
+#       should handle all env varibles such as path, editing path, user input, etc...
+
 
 class DrtConfig:
 
@@ -14,23 +17,23 @@ class DrtConfig:
     def __init__(self) -> None:
         pass
 
-    # This are default in nature
+    # This is default in nature
     # May not require setter functions
-    def get_current_dir(self):
+    def get_current_dir(self) -> str:
         return self.__CURRENT_DIR
 
-    def get_parent_path(self):
+    def get_parent_path(self) -> str:
         return self.__PARENT_PATH
 
-    def get_editing_dir(self):
+    def get_editing_dir(self) -> str:
         return self.__EDITING_DIR
 
-    def set_editing_dir(self, editingDir):
+    def set_editing_dir(self, editingDir) -> None:
         print("Setting the editing path")
         # TODO: Verify editing dir is a valid directory
         # FIXME: If path within parent path, handle folder name or create path.
         if os.path.isdir(editingDir):
             self.__EDITING_DIR = editingDir
 
-    def get_missppelled_dir(self):
+    def get_missppelled_dir(self) -> str:
         return self.__MISSPELLED_DIR

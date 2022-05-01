@@ -28,14 +28,19 @@ Ensure you have properly installed Python 3 on your system
 2. mkdir called Edit
 3. cd into src folder
 4. Run in the following format:
-   - python3 main.py [Option...]
+   - python3 main.py [Command...] [Option...]
 
-| CMD Option | Description                                                                                            |
-|:----------: | ------------------------------------------------------------------------------------------------------  |
-|      -h, -help      | Display help menu                                                                               |                                   
-|      -r      | Renames files                                                                                          |
-|      -pr     | Preview files that will be renamed                                                                     |
-|      -c      | Count sub directories                                                                                  |                                                         
+| Command | Option    | Description                                                    |
+| ------- | --------- | -------------------------------------------------------------- |
+|         | -h, -help | Display help menu                                              |
+|         | -pr       | Preview files that will be renamed                             |
+|         | -r        | Rename files                                                   |
+|         | -c        | Count number of sub directories                                |
+| check   |           | Prints Errors found                                            |
+| check   | -h, -help | Display check help menu                                        |
+| check   | -ps       | If errors found print suggestions                              |
+| check   | -ss       | Seperate misspelled files into the misspelled directory        |
+| check   | -m        | Migrate files in the misspelled directory back to their origin |
 
 ## License
 
