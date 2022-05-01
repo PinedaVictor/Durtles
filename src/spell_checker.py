@@ -6,7 +6,6 @@
 # -s Seperate misspelled words in a directory called Misspelled
 
 import os
-import sys
 import re
 import shutil
 from colors import Colors
