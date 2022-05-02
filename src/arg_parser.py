@@ -62,3 +62,7 @@ class ArgParser:
                 sc.print_suggestions()
             else:
                 print("Error reading option")
+
+        if(cmd == "config"):
+            if(option == "-h" or option == "-help"):
+                Utils.display_config_help()

@@ -43,6 +43,13 @@ class Utils:
             f"     {SS}     Seperate misspelled files into the misspelled directory")
         print(
             f"     {M}      Migrate files in the misspelled directory back to their origin")
+        print(f"     {HELP}      Print this message")
+
+    def display_config_help():
+        config = Colors.style(Colors.BLUE, "config")
+        print(f"Usage: python3 main.py {config} [OPTIONS...]")
+        print("   None      Print current config")
+        print(f"     {HELP}      Print this message")
 
 
 # TODO: Implement -V -version function

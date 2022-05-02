@@ -3,6 +3,8 @@
 
 import os
 
+from colors import Colors
+
 # TODO: Imlement drt config class.
 #       should handle all env varibles such as path, editing path, user input, etc...
 
@@ -28,12 +30,31 @@ class DrtConfig:
     def get_editing_dir(self) -> str:
         return self.__EDITING_DIR
 
-    def set_editing_dir(self, editingDir) -> None:
+    def set_editing_dir(self) -> None:
         print("Setting the editing path")
+        # print("Current diretory: " + self.__CURRENT_DIR)
+        ced = Colors.style(Colors.BLUE, "Current editing directory: ")
+        print(ced + self.__EDITING_DIR)
+        # pd = Colors.style(Colors.BLUE, "Parent diretory: ")
+        # print(pd + self.__PARENT_PATH)
+        # Macos (option-command-c) to copy folder path
         # TODO: Verify editing dir is a valid directory
         # FIXME: If path within parent path, handle folder name or create path.
-        if os.path.isdir(editingDir):
-            self.__EDITING_DIR = editingDir
+        print("Enter a valid directory: ")
+        user_input = input()
+        print("Path Entered: ", user_input)
+        if os.path.isdir(user_input):
+            self.__EDITING_DIR = user_input
+        else:
+            print("Error: Not a valid path")
 
     def get_missppelled_dir(self) -> str:
         return self.__MISSPELLED_DIR
+
+
+def main():
+    c = DrtConfig()
+    c.set_editing_dir()
+
+
+main()
