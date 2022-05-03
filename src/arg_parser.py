@@ -19,14 +19,17 @@ class ArgParser:
 
     def parse(self, args: list):
         args_length = len(args)
-        if(args_length == 2 and args[1] in OPTIONS):
-            self.parse_option(args[1])
-        elif(args_length > 1 and args[1] in COMMANDS):
-            self.parse_command(args)
+        if(args_length == 1):
+            print("drt: try python3 main.py -h")
         else:
-            user_arg = Colors.style(Colors.RED, args[1])
-            print(
-                f"Option {user_arg} does not exists: Use -help to view availble options")
+            if(args_length == 2 and args[1] in OPTIONS):
+                self.parse_option(args[1])
+            elif(args_length > 1 and args[1] in COMMANDS):
+                self.parse_command(args)
+            else:
+                user_arg = Colors.style(Colors.RED, args[1])
+                print(
+                    f"Option {user_arg} does not exists: Use -help to view availble options")
 
     def parse_option(self, option: str):
         if(option == "-help" or option == "-h"):
