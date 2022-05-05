@@ -51,10 +51,19 @@ class DrtConfig:
     def get_missppelled_dir(self) -> str:
         return self.__MISSPELLED_DIR
 
+    def get_current_config(self):
+        current_dir = Colors.style(Colors.BLUE, self.__CURRENT_DIR)
+        edit_dir = Colors.style(Colors.BLUE, self.__EDITING_DIR)
+        pd = Colors.style(Colors.BLUE, self.__PARENT_PATH)
+        print("Currenct directory: " + current_dir)
+        print("Editing directory: " + edit_dir)
+        print("Parent path: " + pd)
+
 
 def main():
     c = DrtConfig()
-    c.set_editing_dir()
+    # c.set_editing_dir()
+    # c.get_current_config()
 
 
-main()
+# main()

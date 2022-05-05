@@ -4,6 +4,7 @@ from utils import Utils
 from colors import Colors
 from rename import Rename
 from spell_checker import SpellChecker
+from config import DrtConfig
 # Interprest cmd string argument
 # and execute cmd
 
@@ -13,6 +14,7 @@ COMMANDS = {"config", "check"}
 
 # input format goal drt option or drt cmd arg
 sc = SpellChecker()
+drt = DrtConfig()
 
 
 class ArgParser:
@@ -67,5 +69,7 @@ class ArgParser:
                 print("Error reading option")
 
         if(cmd == "config"):
-            if(option == "-h" or option == "-help"):
+            if(option == ""):
+                drt.get_current_config()
+            elif(option == "-h" or option == "-help"):
                 Utils.display_config_help()
