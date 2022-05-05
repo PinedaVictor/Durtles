@@ -1,8 +1,6 @@
 # DRT configuration
 
-
 import os
-
 from colors import Colors
 
 # TODO: Imlement drt config class.
@@ -13,11 +11,15 @@ class DrtConfig:
 
     __CURRENT_DIR = os.getcwd()
     __PARENT_PATH = os.path.dirname(__CURRENT_DIR)
-    __EDITING_DIR = "{0}/Edit".format(__PARENT_PATH)
+    __EDITING_DIR = ""
     __MISSPELLED_DIR = "{0}/Misspelled".format(__PARENT_PATH)
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, edit_directory: str) -> None:
+        self.__EDITING_DIR = edit_directory
+        # __EDITING_DIR = "{0}/Edit".format(__PARENT_PATH)
+        # __MISSPELLED_DIR = "{0}/Misspelled".format(__PARENT_PATH)
+
+        # pass
 
     # This is default in nature
     # May not require setter functions
@@ -31,20 +33,15 @@ class DrtConfig:
         return self.__EDITING_DIR
 
     def set_editing_dir(self) -> None:
-        print("Setting the editing path")
-        # print("Current diretory: " + self.__CURRENT_DIR)
-        ced = Colors.style(Colors.BLUE, "Current editing directory: ")
-        print(ced + self.__EDITING_DIR)
-        # pd = Colors.style(Colors.BLUE, "Parent diretory: ")
-        # print(pd + self.__PARENT_PATH)
-        # Macos (option-command-c) to copy folder path
-        # TODO: Verify editing dir is a valid directory
-        # FIXME: If path within parent path, handle folder name or create path.
+        ced = Colors.style(Colors.BLUE, self.__EDITING_DIR)
+        print("Current editing directory: " + ced)
         print("Enter a valid directory: ")
         user_input = input()
         print("Path Entered: ", user_input)
         if os.path.isdir(user_input):
             self.__EDITING_DIR = user_input
+            success = Colors.style(Colors.GREEN, "Successfully")
+            print(success + " updated")
         else:
             print("Error: Not a valid path")
 
@@ -60,10 +57,13 @@ class DrtConfig:
         print("Parent path: " + pd)
 
 
-def main():
-    c = DrtConfig()
-    # c.set_editing_dir()
-    # c.get_current_config()
+# def main():
+#     c = DrtConfig(
+#         edit_directory="{0}/Edit".format(os.path.dirname(os.getcwd())))
+#     print("Main Function")
+#     c.set_editing_dir()
+#     v = c.get_editing_dir()
+#     print(v)
 
 
 # main()

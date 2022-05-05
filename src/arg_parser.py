@@ -1,4 +1,5 @@
 
+import os
 from count import count_folders_dir
 from utils import Utils
 from colors import Colors
@@ -13,8 +14,9 @@ OPTIONS = {"-help", "-h", "-V", "-c",
 COMMANDS = {"config", "check"}
 
 # input format goal drt option or drt cmd arg
+DEFAULT_EDIT_DIR = "{0}/Edit".format(os.path.dirname(os.getcwd()))
 sc = SpellChecker()
-drt = DrtConfig()
+drt = DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
 
 
 class ArgParser:
@@ -29,9 +31,7 @@ class ArgParser:
             elif(args_length > 1 and args[1] in COMMANDS):
                 self.parse_command(args)
             else:
-                user_arg = Colors.style(Colors.RED, args[1])
-                print(
-                    f"Option {user_arg} does not exists: Use -help to view availble options")
+                self.error_parsing(args[1])
 
     def parse_option(self, option: str):
         if(option == "-help" or option == "-h"):
@@ -52,7 +52,8 @@ class ArgParser:
         elif len(args) == 3:
             option = args[2]
         else:
-            print("Error parsing CMD")
+            input_cmd = Colors.style(Colors.RED, cmd)
+            print("Error parsing command: " + input_cmd)
 
         if(cmd == "check"):
             if(option == ""):
@@ -66,10 +67,17 @@ class ArgParser:
             elif(option == "-ps"):
                 sc.print_suggestions()
             else:
-                print("Error reading option")
+                self.error_parsing(option)
 
         if(cmd == "config"):
             if(option == ""):
                 drt.get_current_config()
             elif(option == "-h" or option == "-help"):
                 Utils.display_config_help()
+            else:
+                self.error_parsing(option)
+
+    def error_parsing(self, arg):
+        user_arg = Colors.style(Colors.RED, arg)
+        print(
+            f"Option {user_arg} does not exists: Use -help to view availble options")

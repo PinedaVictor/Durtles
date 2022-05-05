@@ -11,6 +11,7 @@ SS = Colors.style(Colors.GREEN, "-ss")
 M = Colors.style(Colors.GREEN, "-m")
 SC = Colors.style(Colors.GREEN, "-sc")
 PS = Colors.style(Colors.GREEN, "-ps")
+E = Colors.style(Colors.GREEN, "-e")
 
 
 # Commands
@@ -50,6 +51,8 @@ class Utils:
         print(f"Usage: python3 main.py {config} [OPTIONS...]")
         print("   None      Print current config")
         print(f"     {HELP}      Print this message")
+        # TODO: This needs to be implemented correctly
+        # print(f"     {E}      Change editing directory")
 
 
 # TODO: Implement -V -version function

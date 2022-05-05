@@ -41,6 +41,8 @@ Ensure you have properly installed Python 3 on your system
 | check   | -ps       | If errors found print suggestions                              |
 | check   | -ss       | Seperate misspelled files into the misspelled directory        |
 | check   | -m        | Migrate files in the misspelled directory back to their origin |
+| config  |           | Prints current configuration                                   |
+| config  | -h, -help | Prints config help menu                                        |
 
 ## License
 
