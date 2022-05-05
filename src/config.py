@@ -11,7 +11,7 @@ class DrtConfig:
 
     __CURRENT_DIR = os.getcwd()
     __PARENT_PATH = os.path.dirname(__CURRENT_DIR)
-    __EDITING_DIR = ""
+    # __EDITING_DIR = ""
     __MISSPELLED_DIR = "{0}/Misspelled".format(__PARENT_PATH)
 
     def __init__(self, edit_directory: str) -> None:
@@ -42,6 +42,7 @@ class DrtConfig:
             self.__EDITING_DIR = user_input
             success = Colors.style(Colors.GREEN, "Successfully")
             print(success + " updated")
+            print("-> " + self.__EDITING_DIR)
         else:
             print("Error: Not a valid path")
 
