@@ -4,7 +4,7 @@
 
 > Mission - Build directory utilities that automate time-consuming tasks.
 
-Directory utilities are built for common and specific use cases. Professionals, such as IT professionals and NFT artists' can use this to identify spelling errors in a directory. Files with spelling errors can quickly be separated for editing and migrated back to the original directory.
+Directory utilities are built for common and specific use cases. Professionals, such as IT professionals and NFT artists can use this to identify spelling errors in a directory. Files with spelling errors can quickly be separated for editing and migrated back to the original directory.
 
 ## Features:
 
