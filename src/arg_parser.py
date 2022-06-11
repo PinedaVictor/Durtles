@@ -46,14 +46,17 @@ class ArgParser:
             sc.check_all_file_names()
 
     def parse_command(self, args: list):
+        # FIXME: Account for longer option input
         cmd = args[1]
         if len(args) == 2:
             option = ""
+            # FIXME: Call another function
         elif len(args) == 3:
             option = args[2]
         else:
             input_cmd = Colors.style(Colors.RED, cmd)
             print("Error parsing command: " + input_cmd)
+            return
 
         if(cmd == "check"):
             if(option == ""):
