@@ -58,13 +58,8 @@ class DrtConfig:
         print("Parent path: " + pd)
 
 
-# def main():
-#     c = DrtConfig(
-#         edit_directory="{0}/Edit".format(os.path.dirname(os.getcwd())))
-#     print("Main Function")
-#     c.set_editing_dir()
-#     v = c.get_editing_dir()
-#     print(v)
+def main():
+    print(os.getenv("PATH"))
 
 
-# main()
+main()
