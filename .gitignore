@@ -2,3 +2,7 @@ Layers/
 Edit/
 Misspelled/
 __pycache__/
+
+
+# Virtual Env
+/.drt_venv
