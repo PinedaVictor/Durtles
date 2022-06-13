@@ -1,5 +1,7 @@
 # Utility functions
-from colors import Colors
+import utils.colors as color
+Colors = color.Colors()
+
 
 # options
 # TODO: This can be abstracted out into a function
@@ -19,9 +21,11 @@ E = Colors.style(Colors.GREEN, "-e")
 config = Colors.style(Colors.BLUE, "config")
 check = Colors.style(Colors.BLUE, "check")
 
+# FIXME: Rename this class - confusing with the package
+
 
 class Utils:
-    def display_help():
+    def display_help(self):
         print("Usage: python3 main.py [OPTIONS...]")
         options = Colors.style(Colors.GREEN, "Options:")
         print(options)

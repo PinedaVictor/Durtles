@@ -1,10 +1,13 @@
 # DRT configuration
 
 import os
-from colors import Colors
+
+import utils.colors as colors
 
 # TODO: Imlement drt config class.
 #       should handle all env varibles such as path, editing path, user input, etc...
+
+Colors = colors.Colors()
 
 
 class DrtConfig:
