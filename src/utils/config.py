@@ -65,4 +65,4 @@ def main():
     print(os.getenv("PATH"))
 
 
-main()
+# main()
