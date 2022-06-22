@@ -8,15 +8,18 @@
 import os
 import re
 import shutil
-from colors import Colors
+import utils.colors as color
 from textblob import Word
-from global_ import EDITING_DIR
-from global_ import MISSPELLED_DIR
+import utils.global_ as globals
+
 
 # TODO: You may not need re for this - look into the os lib
 #       their is a function call that returns only the name
 
 PATTERN = re.compile("[a-zA-Z]* ?[^jpg|#|\d|.]")
+EDITING_DIR = globals.EDITING_DIR
+MISSPELLED_DIR = globals.MISSPELLED_DIR
+Colors = color.Colors()
 
 
 class SpellChecker:

@@ -1,22 +1,25 @@
 
 import os
-from count import count_folders_dir
-from utils import Utils
-from colors import Colors
-from rename import Rename
-from spell_checker import SpellChecker
-from config import DrtConfig
-# Interprest cmd string argument
-# and execute cmd
+import count
+import help_menu
+import utils.colors as color
+import rename
+import spell_checker
+import utils.config as config
 
+# TODO: Determine the use case and see if you can build on top of this
 OPTIONS = {"-help", "-h", "-V", "-c",
            "-version", "-pr", "-r"}
 COMMANDS = {"config", "check"}
 
 # input format goal drt option or drt cmd arg
 DEFAULT_EDIT_DIR = "{0}/Edit".format(os.path.dirname(os.getcwd()))
-sc = SpellChecker()
-drt = DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
+# FIXME: make sure using class desgin properly
+sc = spell_checker.SpellChecker()
+drt = config.DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
+Colors = color.Colors()
+Utils = help_menu.Utils()
+Rename = rename.Rename()
 
 
 class ArgParser:
@@ -37,7 +40,7 @@ class ArgParser:
         if(option == "-help" or option == "-h"):
             Utils.display_help()
         elif(option == "-c"):
-            count_folders_dir()
+            count.count_folders_dir()
         elif(option == "-pr"):
             Rename.preview_rename()
         elif(option == "-r"):
@@ -46,11 +49,9 @@ class ArgParser:
             sc.check_all_file_names()
 
     def parse_command(self, args: list):
-        # FIXME: Account for longer option input
         cmd = args[1]
         if len(args) == 2:
             option = ""
-            # FIXME: Call another function
         elif len(args) == 3:
             option = args[2]
         else:

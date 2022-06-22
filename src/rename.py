@@ -11,17 +11,22 @@
 import re
 import os
 import sys
-from colors import Colors
-from global_ import EDITING_DIR
+import utils.colors as color
+import utils.global_ as globals
 
 NAME_PATTERN = re.compile(
     "[a-zA-Z]* ?-?[a-zA-Z]* ?-?[\s]?[a-zA-Z]*[#][(\d+(?:\.\d+)?)]*[-]?.[a-zA-Z]*")
 remove_underscore_dash = "_*-*"
 
+EDITING_DIR = globals.EDITING_DIR
+Colors = color.Colors()
 
+
+# TODO: FIXME: ENSURE PROPER class design -> every class function should have a self parameter
+# FIXME: Reduntant code
 class Rename:
 
-    def rename():
+    def rename(self):
         for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
             for file in files:
                 src = "{0}/{1}".format(sub_dir, file)
@@ -31,7 +36,7 @@ class Rename:
                 dist = "{0}/{1}".format(sub_dir, new_name)
                 os.rename(src, dist)
 
-    def preview_rename():
+    def preview_rename(self):
         for sub_dir, sub_folder_name, files in os.walk(EDITING_DIR):
             print("In directory: " + sub_dir)
             for file in files:
@@ -49,6 +54,7 @@ class Rename:
 
 # TODO: Verify this accepter funciton is no longer needed
 #       might be wise to keep for local testing
+#       TODO: See if there are testing libs for python => possible pytest
 
     def accepter():
 

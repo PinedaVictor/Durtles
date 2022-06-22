@@ -13,5 +13,5 @@ class Colors:
     RED_BACKGROUND = "\u001b[1;37;41m"
     BLUE_BACKGROUND = "\u001b[1;37;44m"
 
-    def style(color: str, statement: str):
+    def style(self, color: str, statement: str):
         return color + statement + Colors.RESET

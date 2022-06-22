@@ -1,5 +1,7 @@
 # Utility functions
-from colors import Colors
+import utils.colors as color
+Colors = color.Colors()
+
 
 # options
 # TODO: This can be abstracted out into a function
@@ -19,9 +21,11 @@ E = Colors.style(Colors.GREEN, "-e")
 config = Colors.style(Colors.BLUE, "config")
 check = Colors.style(Colors.BLUE, "check")
 
+# FIXME: Rename this class - confusing with the package
+
 
 class Utils:
-    def display_help():
+    def display_help(self):
         print("Usage: python3 main.py [OPTIONS...]")
         options = Colors.style(Colors.GREEN, "Options:")
         print(options)
@@ -35,7 +39,7 @@ class Utils:
         print(f"     {config}   Edit config")
         print(f"     {check}    Spell checker")
 
-    def display_check_help():
+    def display_check_help(self):
         check = Colors.style(Colors.BLUE, "check")
         print(f"Usage: python3 main.py {check} [OPTIONS...]")
         print("    None     Prints Errors found")
@@ -46,7 +50,7 @@ class Utils:
             f"     {M}      Migrate files in the misspelled directory back to their origin")
         print(f"     {HELP}      Print this message")
 
-    def display_config_help():
+    def display_config_help(self):
         config = Colors.style(Colors.BLUE, "config")
         print(f"Usage: python3 main.py {config} [OPTIONS...]")
         print("   None      Print current config")

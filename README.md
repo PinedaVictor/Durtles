@@ -41,8 +41,18 @@ Ensure you have properly installed Python 3 on your system
 | check   | -ps       | If errors found print suggestions                              |
 | check   | -ss       | Seperate misspelled files into the misspelled directory        |
 | check   | -m        | Migrate files in the misspelled directory back to their origin |
-| config  |           | Prints current configuration                                   |
-| config  | -h, -help | Prints config help menu                                        |
+
+## Development
+
+1. Clone Repo
+2. In project root directory create a python virtual environment
+
+```sh
+    1. pip install virtualenv [--user]
+    2. virtualenv .drt_venv
+    3. source ./activate_venv.sh (This activates virtual environment)
+    4. Install all dependencies from requirments.txt
+```
 
 ## License
 
