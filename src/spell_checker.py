@@ -9,11 +9,7 @@ import os
 import re
 import shutil
 import utils.colors as color
-# from colors import Colors
 from textblob import Word
-# from global_ import EDITING_DIR
-# from global_ import MISSPELLED_DIR
-
 import utils.global_ as globals
 
 
