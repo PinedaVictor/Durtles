@@ -39,7 +39,7 @@ class Utils:
         print(f"     {config}   Edit config")
         print(f"     {check}    Spell checker")
 
-    def display_check_help():
+    def display_check_help(self):
         check = Colors.style(Colors.BLUE, "check")
         print(f"Usage: python3 main.py {check} [OPTIONS...]")
         print("    None     Prints Errors found")
@@ -50,7 +50,7 @@ class Utils:
             f"     {M}      Migrate files in the misspelled directory back to their origin")
         print(f"     {HELP}      Print this message")
 
-    def display_config_help():
+    def display_config_help(self):
         config = Colors.style(Colors.BLUE, "config")
         print(f"Usage: python3 main.py {config} [OPTIONS...]")
         print("   None      Print current config")

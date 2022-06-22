@@ -3,11 +3,8 @@ import os
 import count
 import help_menu
 import utils.colors as color
-
-# FIXME: modules in the same path do not need  from statement
-from rename import Rename
-from spell_checker import SpellChecker
-# from config import DrtConfig
+import rename
+import spell_checker
 import utils.config as config
 
 # TODO: Determine the use case and see if you can build on top of this
@@ -18,11 +15,11 @@ COMMANDS = {"config", "check"}
 # input format goal drt option or drt cmd arg
 DEFAULT_EDIT_DIR = "{0}/Edit".format(os.path.dirname(os.getcwd()))
 # FIXME: make sure using class desgin properly
-sc = SpellChecker()
+sc = spell_checker.SpellChecker()
 drt = config.DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
 Colors = color.Colors()
-
 Utils = help_menu.Utils()
+Rename = rename.Rename()
 
 
 class ArgParser:
@@ -52,11 +49,9 @@ class ArgParser:
             sc.check_all_file_names()
 
     def parse_command(self, args: list):
-        # FIXME: Account for longer option input
         cmd = args[1]
         if len(args) == 2:
             option = ""
-            # FIXME: Call another function
         elif len(args) == 3:
             option = args[2]
         else:
