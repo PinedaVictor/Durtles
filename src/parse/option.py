@@ -1,5 +1,5 @@
 
-import parser.constants as c
+import parse.constants as c
 import utils.colors as paint
 
 
