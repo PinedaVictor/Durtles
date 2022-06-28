@@ -23,7 +23,8 @@
 # TODO: Arg parser should account for leading slash ex. -V
 # TODO: Handle blank input
 
-BLANK_CMD_OPTIONS = {"help", "h", "V", "c", "version", "pr", "r"}
+OPTION_PREFIX = "-"
+BLANK_CMD_OPTIONS = {"help", "h", "V", "v", "c", "version", "pr", "r"}
 CHECK_OPTIONS = {"", "ps", "ss", "m", "h"}
 
 COMMANDS = {"": BLANK_CMD_OPTIONS, "check": CHECK_OPTIONS}

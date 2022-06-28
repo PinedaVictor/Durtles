@@ -14,4 +14,7 @@ class Colors:
     BLUE_BACKGROUND = "\u001b[1;37;44m"
 
     def style(self, color: str, statement: str):
-        return color + statement + Colors.RESET
+        return color + statement + self.RESET
+
+    def style_error(self, error: str):
+        return self.RED + error + self.RESET

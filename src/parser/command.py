@@ -18,6 +18,6 @@ class Command:
             self.cmd = self.invalid(user_input)
 
     def invalid(self, user_input: str) -> str:
-        user_cmd_error = self.color.style(self.color.RED, user_input)
-        user_feedback = f"{user_cmd_error} is not a valid command."
-        return user_feedback
+        cmd_error = self.color.style(self.color.RED, user_input)
+        feedback = f"{cmd_error} is not a valid command."
+        return feedback
