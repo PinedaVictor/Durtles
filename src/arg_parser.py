@@ -28,13 +28,17 @@ class ArgParser:
         args_length = len(args)
         if(args_length == 1):
             print("drt: try python3 main.py -h")
+            return
         else:
             if(args_length == 2 and args[1] in OPTIONS):
                 self.parse_option(args[1])
+                print("Running option parser")
             elif(args_length > 1 and args[1] in COMMANDS):
                 self.parse_command(args)
+                print("Running cmd parser")
             else:
                 self.error_parsing(args[1])
+                print("We have errro parseing either cmd or option or both")
 
     def parse_option(self, option: str):
         if(option == "-help" or option == "-h"):
@@ -71,7 +75,7 @@ class ArgParser:
             elif(option == "-ps"):
                 sc.print_suggestions()
             else:
-                self.error_parsing(option)
+                return self.error_parsing(option)
 
         if(cmd == "config"):
             if(option == ""):

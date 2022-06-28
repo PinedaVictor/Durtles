@@ -10,7 +10,6 @@
 
 import re
 import os
-import sys
 import utils.colors as color
 import utils.global_ as globals
 
@@ -50,27 +49,3 @@ class Rename:
                 print(file_st + " " + file_name)
                 print(name_st + " " + new_name_st)
                 print(" ")
-
-
-# TODO: Verify this accepter funciton is no longer needed
-#       might be wise to keep for local testing
-#       TODO: See if there are testing libs for python => possible pytest
-
-    def accepter():
-
-        arg_length = len(sys.argv)
-
-        if(arg_length == 1):
-            Rename.preview_rename()
-        else:
-            try:
-                argument = str(sys.argv[1])
-                if(argument == "-r"):
-                    Rename.rename()
-                else:
-                    print("ERROR: Argument does not exist")
-                    print("Either run defualt script or choose an acceptable argument")
-            except:
-                print("Error: Make sure your input is in the correct format ")
-
-# accepter()
