@@ -14,15 +14,16 @@ import parser.option as cmd
 def main():
 
     input = sys.argv
+    print(input)
 
-    if(len(input) == 1):
-        p = cmd.Option("")
-        print(p.cmd_arg_option)
-    else:
-        print("Calling option")
-        parse = cmd.Option(input[1])
-        print("Option: " + parse.cmd_arg_option)
-        return
+    # if(len(input) == 1):
+    #     p = cmd.Option("")
+    #     print(p.cmd_arg_option)
+    # else:
+    #     print("Calling option")
+    #     parse = cmd.Option(input[1])
+    #     print("Option: " + parse.cmd_arg_option)
+    #     return
 
 
 if __name__ == '__main__':
