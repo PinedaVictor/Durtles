@@ -2,9 +2,7 @@
 import sys
 
 
-# import arg_parser
-# import parser.command as cmd
-import parse.option as cmd
+import parse.preprocess as pr
 
 # def main():
 #     parse_input = arg_parser.ArgParser()
@@ -14,16 +12,8 @@ import parse.option as cmd
 def main():
 
     input = sys.argv
-    print(input)
-
-    # if(len(input) == 1):
-    #     p = cmd.Option("")
-    #     print(p.cmd_arg_option)
-    # else:
-    #     print("Calling option")
-    #     parse = cmd.Option(input[1])
-    #     print("Option: " + parse.cmd_arg_option)
-    #     return
+    # print(input)
+    pr.Preprocess(input)
 
 
 if __name__ == '__main__':

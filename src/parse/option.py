@@ -1,6 +1,7 @@
 
 import parse.constants as c
 import utils.colors as paint
+import parse.mod_option as mod
 
 
 class Option:
@@ -12,7 +13,7 @@ class Option:
         self.valid(cmd_arg)
 
     def valid(self, option_arg: str) -> str:
-        mod_option = option_arg.replace(c.OPTION_PREFIX, "")
+        mod_option = mod.ModOption().remove_prefix(option_arg)
         if mod_option in c.BLANK_CMD_OPTIONS:
             self.cmd_arg_option = mod_option
         else:
