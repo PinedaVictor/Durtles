@@ -15,30 +15,40 @@
 # Should I parse at this step and avpid preprocess?
 
 
-import parse.mod_option as mod_pre
-import parse.constants as c
+from distutils.log import error
 import parse.command as cm
 import parse.option as op
+import parse.error as er
 
 
 class Preprocess:
 
+    error = er.Error()
+
     def __init__(self, cmd_args: list) -> None:
         self.valid_args = "" or list
-        self.valid_option = op.Option(cmd_args[1])
-        self.valid_cmd = cm.Command(cmd_args[1])
-        self.validate(cmd_args)
+        self.valid_cmd = "" or bool
+        self.valid_cmd = "" or bool
+        self.assign_args(cmd_args)
 
-    def validate(self, cmd_args: list) -> list:
-        # cases:
-        #   1. only one option provided
-        #       - length matters len = 1 = option or cmd
-        #   2. one command plus option
+    def assign_args(self, args: list) -> None:
+        if len(args) != 1:
+            self.valid_option = op.Option(args)
+            self.valid_cmd = cm.Command(args)
+            self.validate(args)
+        else:
+            print(self.error.no_args())
 
-        print("IN preprocess step")
-        print(cmd_args)
-        # option = self.is_option(cmd_args)
-
-        print(self.valid_option.cmd_arg_option)
-        print(self.valid_cmd.cmd)
-        pass
+    def validate(self, args) -> None:
+        cmd = self.valid_cmd.cmd
+        option = self.valid_option.cmd_arg_option
+        print(cmd)
+        print(option)
+        if cmd == False and option == False:
+            print(self.error.invalid_args(f"{args[1]}"))
+        elif cmd != False:
+            print("Parse cmd")
+            print(cmd)
+        else:
+            print("Parse option")
+            print(option)
