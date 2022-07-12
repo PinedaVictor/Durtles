@@ -15,7 +15,6 @@
 # Should I parse at this step and avpid preprocess?
 
 
-from distutils.log import error
 import parse.command as cm
 import parse.option as op
 import parse.error as er
@@ -39,16 +38,12 @@ class Preprocess:
         else:
             print(self.error.no_args())
 
-    def validate(self, args) -> None:
+    def validate(self, args: list) -> None:
         cmd = self.valid_cmd.cmd
         option = self.valid_option.cmd_arg_option
-        print(cmd)
-        print(option)
         if cmd == False and option == False:
             print(self.error.invalid_args(f"{args[1]}"))
         elif cmd != False:
-            print("Parse cmd")
-            print(cmd)
+            self.valid_cmd = cmd
         else:
-            print("Parse option")
-            print(option)
+            self.valid_option = option
