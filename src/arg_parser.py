@@ -15,11 +15,12 @@ COMMANDS = {"config", "check"}
 # input format goal drt option or drt cmd arg
 DEFAULT_EDIT_DIR = "{0}/Edit".format(os.path.dirname(os.getcwd()))
 # FIXME: make sure using class desgin properly
-sc = spell_checker.SpellChecker()
-drt = config.DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
 Colors = color.Colors()
-Utils = help_menu.Utils()
+drt = config.DrtConfig(edit_directory=DEFAULT_EDIT_DIR)
+
+Utils = help_menu.HelpMenu()
 Rename = rename.Rename()
+sc = spell_checker.SpellChecker()
 
 
 class ArgParser:

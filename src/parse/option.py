@@ -6,15 +6,15 @@ import parse.mod_option as mod
 class Option:
 
     def __init__(self, cmd_arg: list) -> None:
-        self.cmd_arg_option = "" or False
+        self.option = "" or False
         self.valid(cmd_arg[1])
 
     def valid(self, option_arg: str) -> str or bool:
         mod_option = mod.ModOption().remove_prefix(option_arg)
         if mod_option in c.BLANK_CMD_OPTIONS:
-            self.cmd_arg_option = mod_option
+            self.option = mod_option
         else:
-            self.cmd_arg_option = False
+            self.option = False
 
     # TODO: write function for valid CMD Options
     def valid_cmd_option(self):

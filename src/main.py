@@ -2,7 +2,7 @@
 import sys
 
 
-import parse.preprocess as pr
+import parse.parse as parse
 
 # def main():
 #     parse_input = arg_parser.ArgParser()
@@ -13,7 +13,8 @@ def main():
 
     input = sys.argv
     # print(input)
-    pr.Preprocess(input)
+    # pr.Preprocess(input)
+    parse.Parse(input)
 
 
 if __name__ == '__main__':

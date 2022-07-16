@@ -5,6 +5,7 @@ Colors = color.Colors()
 
 # options
 # TODO: This can be abstracted out into a function
+# TODO: Implement -V -version function
 HELP = Colors.style(Colors.GREEN, "-h")
 PR = Colors.style(Colors.GREEN, "-pr")
 R = Colors.style(Colors.GREEN, "-r")
@@ -21,10 +22,8 @@ E = Colors.style(Colors.GREEN, "-e")
 config = Colors.style(Colors.BLUE, "config")
 check = Colors.style(Colors.BLUE, "check")
 
-# FIXME: Rename this class - confusing with the package
 
-
-class Utils:
+class HelpMenu:
     def display_help(self):
         print("Usage: python3 main.py [OPTIONS...]")
         options = Colors.style(Colors.GREEN, "Options:")
@@ -58,5 +57,6 @@ class Utils:
         # TODO: This needs to be implemented correctly
         # print(f"     {E}      Change editing directory")
 
+    def execute(self, param: str) -> None:
 
-# TODO: Implement -V -version function
+        pass
