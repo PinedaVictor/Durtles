@@ -24,6 +24,12 @@ check = Colors.style(Colors.BLUE, "check")
 
 
 class HelpMenu:
+
+    def __init__(self) -> None:
+        self.generic_help = getattr(HelpMenu, "display_help")
+
+        # pass
+
     def display_help(self):
         print("Usage: python3 main.py [OPTIONS...]")
         options = Colors.style(Colors.GREEN, "Options:")
@@ -58,5 +64,38 @@ class HelpMenu:
         # print(f"     {E}      Change editing directory")
 
     def execute(self, param: str) -> None:
+        # {user_input_option: self.main_help,  {cmd: user_cmd, user_option: self.check_help}}
+        print("The param: ", str(param))
+        available_programs = {
+            "h": self.generic_help,
+        }
+        print(available_programs[param])
+        return available_programs[param]
 
+    def solve(self, option: str):
+        ops = {
+            "h": "display_help",
+            "check": {"h": "display_check_help"}
+        }
+        # name = "display_check_help"
+        func = getattr(self, ops["check"][option])
+        func()
         pass
+
+    def getOperations(self):
+        ops = {
+            "h": "display_help",
+            "check": {"h": "display_check_help"},
+            "config": {"h": "display_config_help"},
+        }
+        return ops
+
+
+# def main():
+#     print("In help main")
+#     h = HelpMenu()
+#     h.solve("h")
+
+
+# if __name__ == '__main__':
+#     main()

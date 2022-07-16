@@ -2,6 +2,7 @@
 import parse.command as cm
 import parse.option as op
 import parse.error as er
+import parse.parse_option as po
 
 
 class Parse:
@@ -18,18 +19,23 @@ class Parse:
             self.valid_cmd = cm.Command(args)
             self.validate(args)
         else:
-            return self.error.no_args()
+            print(self.error.no_args())
+            return
 
     def validate(self, args: list) -> None:
         if self.valid_cmd.cmd == False and self.valid_option.option == False:
-            return self.error.invalid_args(f"{args[1]}")
+            print(self.error.invalid_args(f"{args[1]}"))
+            return
         elif self.valid_cmd.cmd != False:
+            # PARSE CMD
             print("Valid cmd ")
             self.valid_cmd
         else:
-            print("Valid option")
-            print(self.valid_option.option)
+            # PARSE OPTION
             self.valid_option
+            po.ParseOption(self.valid_option.option)
+            # self.help_user.execute(self.valid_option.option)
+
 
 # This step is acting like my parser => may not need another one on top of this
 # At this point we have a valid option or cmd or niether
