@@ -1,11 +1,10 @@
 # Main function
 import sys
-import arg_parser
+import parse.parse as parse
 
 
 def main():
-    parse_input = arg_parser.ArgParser()
-    parse_input.parse(sys.argv)
+    parse.Parse(sys.argv)
 
 
 if __name__ == '__main__':

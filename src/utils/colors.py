@@ -10,8 +10,18 @@ class Colors:
     WHITE = "\u001b[37;1m"
     RESET = "\u001b[0m"
 
+    GREEN_BACKGROUND = "\u001b[1;37;42m"
     RED_BACKGROUND = "\u001b[1;37;41m"
     BLUE_BACKGROUND = "\u001b[1;37;44m"
 
     def style(self, color: str, statement: str):
-        return color + statement + Colors.RESET
+        return color + statement + self.RESET
+
+    def style_error(self, error: str):
+        return self.RED + error + self.RESET
+
+    def drt(self):
+        return self.style(self.GREEN_BACKGROUND, "drt:")
+
+    def user_args(self, args: str) -> str:
+        return self.BLUE + args + self.RESET
