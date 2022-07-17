@@ -2,18 +2,19 @@
 import parse.command as cm
 import parse.option as op
 import parse.error as er
-import parse.parse_option as po
+import parse.process as po
+import parse.mod_option as mod
 
 
 class Parse:
 
     error = er.Error()
+    m = mod.ModOption()
 
     def __init__(self, cmd_args: list) -> None:
         self.assign_args(cmd_args)
 
     def assign_args(self, args: list) -> None:
-        print(len(args))
         if len(args) != 1:
             self.valid_option = op.Option(args)
             self.valid_cmd = cm.Command(args)
@@ -28,12 +29,21 @@ class Parse:
             return
         elif self.valid_cmd.cmd != False:
             # PARSE CMD
-            print("Valid cmd ")
-            self.valid_cmd
+            new_args = []
+            if len(args) > 3:
+                print(self.error.invalid_args(f"{args[1]}"))
+                return
+            elif len(args) == 2:
+                new_args = [args[1], ""]
+            elif len(args) == 3:
+                new_args = [args[1], self.m.remove_prefix(args[2])]
+
+            po.Process().command(new_args)
+
         else:
             # PARSE OPTION
             self.valid_option
-            po.ParseOption(self.valid_option.option)
+            po.Process().option(self.valid_option.option)
 
 
 # This step is acting like my parser => may not need another one on top of this
