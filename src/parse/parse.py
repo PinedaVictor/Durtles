@@ -35,25 +35,14 @@ class Parse:
                 return
             elif len(args) == 2:
                 new_args = [args[1], ""]
-            elif len(args) == 3:
+            elif len(args) == 3 and self.m.remove_prefix(args[2]) in self.valid_cmd.cmd:
                 new_args = [args[1], self.m.remove_prefix(args[2])]
-
+            else:
+                print(self.error.invalid_args(f"{args[1]}"))
+                return
             po.Process().command(new_args)
 
         else:
             # PARSE OPTION
             self.valid_option
             po.Process().option(self.valid_option.option)
-
-
-# This step is acting like my parser => may not need another one on top of this
-# At this point we have a valid option or cmd or niether
-# BLOG POST: https://betterprogramming.pub/optimize-your-python-codebases-by-2-5x-with-direct-attribute-access-410df06ec46e
-# Refernce the blog post to assing local vars to functions
-
-# alg
-# for each cmd or option
-    # generate dict of {key = option, value = function }
-# once generated you can execute function given it's key
-
-# FIRST STEP: run -h option or the default for a cmd

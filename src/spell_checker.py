@@ -11,6 +11,7 @@ import shutil
 import utils.colors as color
 from textblob import Word
 import utils.global_ as globals
+import help_menu as hm
 
 
 # TODO: You may not need re for this - look into the os lib
@@ -100,11 +101,13 @@ class SpellChecker:
 
     def migrate_misspelled_dir(self):
 
+        # TODO: style error messages
         if not os.path.isdir(MISSPELLED_DIR):
             print(
                 "You either have no spelling errors or you have not ran python3 spellchecker.py -ss")
             print(
                 "python3 spellchecker.py -ss will move misspelled file names to directory Misspelled")
+            return
         else:
             print("Migrating")
             print("")
@@ -151,3 +154,18 @@ class SpellChecker:
             return "No spelling erros found"
         else:
             return "Errors Found"
+
+    def check_help(self):
+        # FIXME:
+        hm.HelpMenu().display_check_help()
+
+    def ops(self):
+        options = {"": "print_errors",
+                   "h": "check_help",
+                   "ps": "print_suggestions",
+                   "ss": "seperate_incorrect_directory",
+                   "m": "migrate_misspelled_dir"}
+        ops = {
+            "check": options
+        }
+        return ops

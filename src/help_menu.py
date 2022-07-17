@@ -27,22 +27,21 @@ check = Colors.style(Colors.BLUE, "check")
 class HelpMenu:
 
     def __init__(self) -> None:
-        self.generic_help = getattr(HelpMenu, "display_help")
-
-        # pass
+        pass
 
     def display_help(self):
-        print("Usage: python3 main.py [OPTIONS...]")
+        print("Usage: python3 main.py [OPTION]")
         options = Colors.style(Colors.GREEN, "Options:")
         print(options)
         print(f"     {HELP}      Display help menu")
         print(f"     {PR}     Preview files that will be renamed")
         print(f"     {R}      Rename files")
         print(f"     {C}      Count number of sub directories")
-        print("Usage: python3 main.py [COMMAND...][OPTIONS...]")
+        print("Usage: python3 main.py [COMMAND] [OPTION]")
         cmds = Colors.style(Colors.BLUE, "Commands:")
         print(cmds)
-        print(f"     {config}   Edit config")
+        # TODO: implement config, is it even needed?
+        # print(f"     {config}   Edit config")
         print(f"     {check}    Spell checker")
 
     def display_check_help(self):
@@ -67,7 +66,5 @@ class HelpMenu:
     def ops(self) -> dict:
         ops = {
             "h": "display_help",
-            "check": {"h": "display_check_help"},
-            "config": {"h": "display_config_help"},
         }
         return ops
