@@ -4,7 +4,6 @@ import parse.parse as parse
 
 
 def main():
-    # input = sys.argv
     parse.Parse(sys.argv)
 
 
