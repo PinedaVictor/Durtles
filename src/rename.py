@@ -49,3 +49,10 @@ class Rename:
                 print(file_st + " " + file_name)
                 print(name_st + " " + new_name_st)
                 print(" ")
+
+    def ops(self) -> dict:
+        ops = {
+            "r": "rename",
+            "pr": "preview_rename"
+        }
+        return ops

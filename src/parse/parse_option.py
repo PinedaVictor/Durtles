@@ -1,22 +1,19 @@
 
 
 import help_menu as hm
-
+import count as c
+import parse.operations as op
 
 BLANK_CMD_OPTIONS = {"help", "h", "V", "v", "c", "version", "pr", "r"}
 
 
-class ParseOption(hm.HelpMenu):
+class ParseOption(op.Operations):
 
-    help_user = hm.HelpMenu().getOperations()
+    ops = op.Operations().get_ops()
 
     def __init__(self, option: str) -> None:
-        print("Parsing option")
-        print(option)
         self.resolve(option)
-        pass
 
-    def resolve(self, option: str):
-        func = getattr(self, self.help_user[option])
+    def resolve(self, option: str) -> None:
+        func = getattr(self, self.ops[option])
         func()
-        pass

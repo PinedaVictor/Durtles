@@ -1,4 +1,5 @@
 # Utility functions
+from typing import Dict
 import utils.colors as color
 Colors = color.Colors()
 
@@ -63,39 +64,10 @@ class HelpMenu:
         # TODO: This needs to be implemented correctly
         # print(f"     {E}      Change editing directory")
 
-    def execute(self, param: str) -> None:
-        # {user_input_option: self.main_help,  {cmd: user_cmd, user_option: self.check_help}}
-        print("The param: ", str(param))
-        available_programs = {
-            "h": self.generic_help,
-        }
-        print(available_programs[param])
-        return available_programs[param]
-
-    def solve(self, option: str):
-        ops = {
-            "h": "display_help",
-            "check": {"h": "display_check_help"}
-        }
-        # name = "display_check_help"
-        func = getattr(self, ops["check"][option])
-        func()
-        pass
-
-    def getOperations(self):
+    def ops(self) -> dict:
         ops = {
             "h": "display_help",
             "check": {"h": "display_check_help"},
             "config": {"h": "display_config_help"},
         }
         return ops
-
-
-# def main():
-#     print("In help main")
-#     h = HelpMenu()
-#     h.solve("h")
-
-
-# if __name__ == '__main__':
-#     main()

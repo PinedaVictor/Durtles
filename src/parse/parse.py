@@ -34,7 +34,6 @@ class Parse:
             # PARSE OPTION
             self.valid_option
             po.ParseOption(self.valid_option.option)
-            # self.help_user.execute(self.valid_option.option)
 
 
 # This step is acting like my parser => may not need another one on top of this
